@@ -1,11 +1,11 @@
 import {Container} from "inversify";
 import Types from "./types/types";
-import {IFirstService} from "./interface/IFirstService";
-import {FirstService} from "./FirstService";
+import {IPrincipalService} from "./interface/IPrincipalService";
+import {PrincipalService} from "./PrincipalService";
 
 const container = new Container();
 
-container.bind<IFirstService>(Types.FirstService).to(FirstService);
+container.bind<IPrincipalService>(Types.PrincipalService).to(PrincipalService);
 
 
 export default container;

@@ -1,6 +1,6 @@
 
 export const  Types = {
-    FirstService: Symbol('IFirstService')
+    PrincipalService: Symbol('IPrincipalService')
 }
 
 export default Types;

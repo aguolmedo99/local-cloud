@@ -2,6 +2,10 @@ import "reflect-metadata";
 import bodyParser from 'body-parser';
 import {AppRoutes} from "./routes";
 
+const https = require("https");
+const fs = require("fs");
+
+
 require('dotenv').config();
 
 const express = require('express');
@@ -28,11 +32,21 @@ AppRoutes.forEach((route) => {
 )
 
 const startServer = async () => {
-    await app.listen(process.env.PORT || 8080, process.env.HOSTNAME, () => {
+    https.createServer(
+        {
+            key:fs.readFileSync("key.pem"),
+            cert:fs.readFileSync("cert.pem")
+        },
+        app)
+        .listen(process.env.PORT || 8080, process.env.HOSTNAME, () => {
         console.log(
-            `-- ${new Date()} --\n-- Server running on http://${process.env.HOSTNAME}:${process.env.PORT} -- \n-- Test endpoint on  http://${process.env.HOSTNAME}:${process.env.PORT}/holamundo --`);
+            `-- ${new Date()} --\n-- Server running on https://${process.env.HOSTNAME}:${process.env.PORT} -- \n-- Test endpoint on  https://${process.env.HOSTNAME}:${process.env.PORT}/holamundo --`);
     });
 };
+
+
+
+
 
 
 (async () =>

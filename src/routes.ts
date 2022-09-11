@@ -1,16 +1,20 @@
-import {FirstServiceController} from "./controllers/FirstServiceController";
+import {PrincipalServiceController} from "./controllers/PrincipalServiceController";
 
 
 export const AppRoutes = [
     {
         path: '/holamundo',
         method: 'get',
-        action: FirstServiceController.holaMundo,
+        action: PrincipalServiceController.holaMundo,
     },
     {
         path: '/upload',
         method: 'post',
-        action: FirstServiceController.upload,
+        action: PrincipalServiceController.upload,
+    },
+    {
+        path: '/token',
+        method: 'get',
+        action: PrincipalServiceController.accessToken,
     }
-
 ]
